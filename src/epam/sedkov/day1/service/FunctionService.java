@@ -1,7 +1,11 @@
 package epam.sedkov.day1.service;
 
+import epam.sedkov.day1.entity.SegmentLine;
 import epam.sedkov.day1.exception.MyCheckedException;
 import epam.sedkov.day1.validator.FunctionValidator;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FunctionService {
 
@@ -24,4 +28,21 @@ public class FunctionService {
             return countSecondExpression(number);
         }
     }
+
+    private double countFunctionTan(double degrees) {
+        return Math.tan(Math.toRadians(degrees));
+    }
+
+    public Map<Double, Double> countFunctionTanForSegment(SegmentLine segment) throws MyCheckedException {
+        Map<Double, Double> tanValues = new HashMap<Double, Double>();
+        for (double i = segment.getStartSegment(); i <= segment.getEndSegment(); i += segment.getStepSegment()) {
+            if (FunctionValidator.isTanExist(i)) {
+                tanValues.put(i, countFunctionTan(i));
+            } else {
+                throw new MyCheckedException("Division by zero: Tangent tends to infinity");
+            }
+        }
+        return tanValues;
+    }
+
 }
