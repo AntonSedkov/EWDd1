@@ -2,48 +2,40 @@ package epam.sedkov.day1.service;
 
 import epam.sedkov.day1.entity.MonthEnum;
 import epam.sedkov.day1.entity.PassedTime;
-import epam.sedkov.day1.exception.MyCheckedException;
+import epam.sedkov.day1.exception.CheckedException;
 import epam.sedkov.day1.validator.CalendarValidator;
 
 public class CalendarService {
 
-    private int receiveQuantityOfDaysInMonth(int month) throws MyCheckedException {
+    public int receiveQuantityOfDaysInMonth(int month) {
         return (MonthEnum.values()[month - 1].getDays());
     }
 
-    public boolean isLeapYear(int year) throws MyCheckedException {
-        if (CalendarValidator.isYear(year)) {
-            return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
-        } else {
-            throw new MyCheckedException("Wrong year: needed from 0 to 2020");
-        }
-    }
-
-    public int receiveConcreteDaysInMonthAndYear(int year, int month) throws MyCheckedException {
+    public int receiveConcreteDaysInMonthAndYear(int year, int month) throws CheckedException {
         if (CalendarValidator.isMonth(month)) {
             int days = receiveQuantityOfDaysInMonth(month);
-            if (isLeapYear(year) && MonthEnum.values()[month - 1] == MonthEnum.FEBRUARY) {
+            if (CalendarValidator.isLeapYear(year) && MonthEnum.values()[month - 1] == MonthEnum.FEBRUARY) {
                 days++;
             }
             return days;
         } else {
-            throw new MyCheckedException("Wrong month: needed from 1 to 12");
+            throw new CheckedException("Wrong month: needed from 1 to 12");
         }
     }
 
     private int receiveHours(int seconds) {
-        return seconds / PassedTime.SECONDS_IN_HOUR;
+        return seconds / CalendarValidator.SECONDS_IN_HOUR;
     }
 
     private int receiveMinutes(int seconds) {
-        return (seconds % PassedTime.SECONDS_IN_HOUR / PassedTime.SECONDS_IN_MINUTE);
+        return (seconds % CalendarValidator.SECONDS_IN_HOUR / CalendarValidator.SECONDS_IN_MINUTE);
     }
 
     private int receiveSeconds(int seconds) {
-        return (seconds % PassedTime.SECONDS_IN_HOUR % PassedTime.SECONDS_IN_MINUTE);
+        return (seconds % CalendarValidator.SECONDS_IN_HOUR % CalendarValidator.SECONDS_IN_MINUTE);
     }
 
-    public PassedTime receiveTime(int seconds) throws MyCheckedException {
+    public PassedTime receiveTime(int seconds) throws CheckedException {
         if (CalendarValidator.isSecondsInCurrentDay(seconds)) {
             PassedTime passedTime = new PassedTime();
             passedTime.setPassedHours(receiveHours(seconds));
@@ -51,7 +43,7 @@ public class CalendarService {
             passedTime.setPassedSeconds(receiveSeconds(seconds));
             return passedTime;
         } else {
-            throw new MyCheckedException("Wrong data: seconds from 0 before " + PassedTime.SECONDS_IN_DAY);
+            throw new CheckedException("Wrong data: must be during one day, seconds from 0 before " + CalendarValidator.SECONDS_IN_DAY);
         }
     }
 

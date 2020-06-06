@@ -1,5 +1,7 @@
 package epam.sedkov.day1.entity;
 
+import java.util.StringJoiner;
+
 public class PointCoordinate {
 
     private String pointName;
@@ -41,14 +43,20 @@ public class PointCoordinate {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
         PointCoordinate that = (PointCoordinate) o;
-
-        if (coordinateX != that.coordinateX) return false;
-        if (coordinateY != that.coordinateY) return false;
-        return pointName.equals(that.pointName);
+        if (Double.compare(this.coordinateX, that.coordinateX) != 0) {
+            return false;
+        }
+        if (Double.compare(this.coordinateY, that.coordinateY) != 0) {
+            return false;
+        }
+        return this.pointName.equals(that.pointName);
     }
 
     @Override
@@ -65,10 +73,11 @@ public class PointCoordinate {
 
     @Override
     public String toString() {
-        return "PointCoordinate{" +
-                "pointName='" + pointName + '\'' +
-                ", coordinateX=" + coordinateX +
-                ", coordinateY=" + coordinateY +
-                '}';
+        return new StringJoiner(", ", PointCoordinate.class.getSimpleName() + " [", "]")
+                .add("point name = " + pointName)
+                .add("coordinate X = " + coordinateX)
+                .add("coordinate Y = " + coordinateY)
+                .toString();
     }
+
 }

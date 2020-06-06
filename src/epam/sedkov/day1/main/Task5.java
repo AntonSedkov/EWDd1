@@ -9,8 +9,10 @@ public class Task5 {
         OrdinaryPrinter ordinaryPrinter = new OrdinaryPrinter();
 
         // Good result
-        ordinaryPrinter.printResult(numericService.isPerfectNumber(8128));
-        ordinaryPrinter.printResult(numericService.isPerfectNumber(100));
+        ordinaryPrinter.printResult(
+                numericService.isPerfectNumber(8128));
+        ordinaryPrinter.printResult(
+                numericService.isPerfectNumber(100));
 
     }
 }

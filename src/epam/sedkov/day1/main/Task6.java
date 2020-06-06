@@ -2,7 +2,7 @@ package epam.sedkov.day1.main;
 
 import epam.sedkov.day1.console.CalendarPrinter;
 import epam.sedkov.day1.console.OrdinaryPrinter;
-import epam.sedkov.day1.exception.MyCheckedException;
+import epam.sedkov.day1.exception.CheckedException;
 import epam.sedkov.day1.service.CalendarService;
 
 public class Task6 {
@@ -14,15 +14,17 @@ public class Task6 {
 
         // Good result
         try {
-            calendarPrinter.pastTimePrinter(calendarService.receiveTime(55223));
-        } catch (MyCheckedException e) {
+            calendarPrinter.pastTimePrinter(
+                    calendarService.receiveTime(55223));
+        } catch (CheckedException e) {
             ordinaryPrinter.printException(e);
         }
 
         // Bad result
         try {
-            calendarPrinter.pastTimePrinter(calendarService.receiveTime(1000000));
-        } catch (MyCheckedException e) {
+            calendarPrinter.pastTimePrinter(
+                    calendarService.receiveTime(1000000));
+        } catch (CheckedException e) {
             ordinaryPrinter.printException(e);
         }
     }

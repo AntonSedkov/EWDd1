@@ -1,7 +1,7 @@
 package epam.sedkov.day1.service;
 
-import epam.sedkov.day1.exception.MyCheckedException;
-import epam.sedkov.day1.validator.NumberValidator;
+import epam.sedkov.day1.exception.CheckedException;
+import epam.sedkov.day1.parser.StringParser;
 
 public class NumericService {
 
@@ -9,53 +9,45 @@ public class NumericService {
         return number % 10;
     }
 
-    public int receiveLastDigit(String number) throws MyCheckedException {
-        if (NumberValidator.isIntegerValue(number)) {
-            String numericWithoutSpaces = number.trim();
-            return Integer.parseInt(numericWithoutSpaces.substring(numericWithoutSpaces.length() - 1));
-        } else {
-            throw new MyCheckedException("Wrong input data: not a number");
-        }
+    public int receiveLastDigit(String number) throws CheckedException {
+        StringParser stringParser = new StringParser();
+        return stringParser.parseLastDigit(number);
     }
 
-    public int receiveLastSquaredDigit(int digit) throws MyCheckedException {
-        if (NumberValidator.isDigit(digit)) {
-            switch (digit) {
-                case 1:
-                case 9:
-                    return 1;
-                case 2:
-                case 8:
-                    return 4;
-                case 3:
-                case 7:
-                    return 9;
-                case 4:
-                case 6:
-                    return 6;
-                case 5:
-                    return 5;
-                case 0:
-                    return 0;
-                default:
-                    throw new MyCheckedException("Wrong case statement: not a digit");
-            }
-        } else {
-            throw new MyCheckedException("Wrong input data: not a digit");
+    public int receiveLastSquaredDigit(int digit) throws CheckedException {
+        switch (digit) {
+            case 1:
+            case 9:
+                return 1;
+            case 2:
+            case 8:
+                return 4;
+            case 3:
+            case 7:
+                return 9;
+            case 4:
+            case 6:
+                return 6;
+            case 5:
+                return 5;
+            case 0:
+                return 0;
+            default:
+                throw new CheckedException("Wrong case statement: not a digit");
         }
     }
 
     public boolean atLeastTwoEven(int[] numbers) {
         int quantityOfEven = 0;
         for (int i = 0; quantityOfEven < 2 && i < numbers.length; i++) {
-            if (NumberValidator.isEvenNumber(numbers[i])) {
+            if (numbers[i] % 2 == 0) {
                 quantityOfEven++;
             }
         }
         return quantityOfEven == 2;
     }
 
-    public boolean atLeastTwoEven(String[] numericStrings) throws MyCheckedException {
+    public boolean atLeastTwoEven(String[] numericStrings) throws CheckedException {
         int[] numbersFromString = new int[numericStrings.length];
         for (int i = 0; i < numericStrings.length; i++) {
             numbersFromString[i] = receiveLastDigit(numericStrings[i]);
@@ -73,6 +65,5 @@ public class NumericService {
         }
         return number == sumOfDivisors;
     }
-
 
 }

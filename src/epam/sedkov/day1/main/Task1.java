@@ -10,15 +10,21 @@ public class Task1 {
 
         // Good result
         try {
-            printer.printLastDigit(numericService.receiveLastSquaredDigit(numericService.receiveLastDigit(242)));
-            printer.printLastDigit(numericService.receiveLastSquaredDigit(numericService.receiveLastDigit(" 125459312423677  ")));
+            printer.printLastSquareDigit(
+                    numericService.receiveLastSquaredDigit(
+                            numericService.receiveLastDigit(242)));
+            printer.printLastSquareDigit(
+                    numericService.receiveLastSquaredDigit(
+                            numericService.receiveLastDigit(" 125459312423677  ")));
         } catch (Exception e) {
             printer.printException(e);
         }
 
         // Bad result
         try {
-            printer.printLastDigit(numericService.receiveLastSquaredDigit(numericService.receiveLastDigit("Hello Java!!!")));
+            printer.printLastSquareDigit(
+                    numericService.receiveLastSquaredDigit(
+                            numericService.receiveLastDigit("Hello Java!!!")));
         } catch (Exception e) {
             printer.printException(e);
         }

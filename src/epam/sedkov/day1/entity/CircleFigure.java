@@ -1,12 +1,11 @@
 package epam.sedkov.day1.entity;
 
+import java.util.StringJoiner;
+
 public class CircleFigure {
     private double radius;
     private double length;
     private double square;
-
-    public CircleFigure() {
-    }
 
     public double getRadius() {
         return radius;
@@ -35,13 +34,17 @@ public class CircleFigure {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
         CircleFigure that = (CircleFigure) o;
-
-        if (Double.compare(that.radius, radius) != 0) return false;
-        if (Double.compare(that.length, length) != 0) return false;
-        return Double.compare(that.square, square) == 0;
+        if (Double.compare(that.radius, this.radius) != 0) {
+            return false;
+        }
+        if (Double.compare(that.length, this.radius) != 0) {
+            return false;
+        }
+        return Double.compare(that.square, this.square) == 0;
     }
 
     @Override
@@ -53,16 +56,17 @@ public class CircleFigure {
         temp = Double.doubleToLongBits(length);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(square);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (int) (temp ^ (temp >> 32));
         return result;
     }
 
     @Override
     public String toString() {
-        return "CircleFigure{" +
-                "radius=" + radius +
-                ", length=" + length +
-                ", square=" + square +
-                '}';
+        return new StringJoiner(", ", CircleFigure.class.getSimpleName() + "[", "]")
+                .add("radius = " + radius)
+                .add("length = " + length)
+                .add("square = " + square)
+                .toString();
     }
+
 }

@@ -2,7 +2,7 @@ package epam.sedkov.day1.main;
 
 import epam.sedkov.day1.console.OrdinaryPrinter;
 import epam.sedkov.day1.console.TrigonometricPrinter;
-import epam.sedkov.day1.exception.MyCheckedException;
+import epam.sedkov.day1.exception.CheckedException;
 import epam.sedkov.day1.service.TrigonometricService;
 
 public class Task9 {
@@ -16,7 +16,7 @@ public class Task9 {
             trigonometricPrinter.circlePrint(
                     trigonometricService.countCircleLengthAndSquare(5.19)
             );
-        } catch (MyCheckedException e) {
+        } catch (CheckedException e) {
             ordinaryPrinter.printException(e);
         }
 
@@ -25,7 +25,7 @@ public class Task9 {
             trigonometricPrinter.circlePrint(
                     trigonometricService.countCircleLengthAndSquare(-2.77)
             );
-        } catch (MyCheckedException e) {
+        } catch (CheckedException e) {
             ordinaryPrinter.printException(e);
         }
     }

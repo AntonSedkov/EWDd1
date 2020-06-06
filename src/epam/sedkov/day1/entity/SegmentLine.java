@@ -1,14 +1,13 @@
 package epam.sedkov.day1.entity;
 
+import java.util.StringJoiner;
+
 public class SegmentLine {
     private double startSegment;
     private double endSegment;
     private double stepSegment;
 
     public SegmentLine() {
-        this.startSegment = Math.round(Math.random() * 180);                                            // [0;179];
-        this.endSegment = Math.round(Math.random() * 181 + 180);                                        // [180;360]
-        this.stepSegment = Math.round(Math.random() * (this.endSegment - this.startSegment) / 2);       //  for 4 steps
     }
 
     public SegmentLine(double startSegment, double endSegment, double stepSegment) {
@@ -41,5 +40,44 @@ public class SegmentLine {
         this.stepSegment = stepSegment;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        SegmentLine that = (SegmentLine) o;
+        if (Double.compare(this.startSegment, that.startSegment) != 0) {
+            return false;
+        }
+        if (Double.compare(this.endSegment, that.endSegment) != 0) {
+            return false;
+        }
+        return Double.compare(this.stepSegment, that.stepSegment) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(startSegment);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(endSegment);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(stepSegment);
+        result = (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", SegmentLine.class.getSimpleName() + "[", "]")
+                .add("startSegment = " + startSegment)
+                .add("endSegment = " + endSegment)
+                .add("step = " + stepSegment)
+                .toString();
+    }
 
 }

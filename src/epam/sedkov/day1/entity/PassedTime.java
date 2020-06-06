@@ -2,10 +2,6 @@ package epam.sedkov.day1.entity;
 
 public class PassedTime {
 
-    public static final int SECONDS_IN_DAY = 86400;
-    public static final int SECONDS_IN_HOUR = 3600;
-    public static final int SECONDS_IN_MINUTE = 60;
-
     private int passedHours;
     private int passedMinutes;
     private int passedSeconds;
@@ -39,14 +35,20 @@ public class PassedTime {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
         PassedTime that = (PassedTime) o;
-
-        if (passedHours != that.passedHours) return false;
-        if (passedMinutes != that.passedMinutes) return false;
-        return passedSeconds == that.passedSeconds;
+        if (this.passedHours != that.passedHours) {
+            return false;
+        }
+        if (this.passedMinutes != that.passedMinutes) {
+            return false;
+        }
+        return this.passedSeconds == that.passedSeconds;
     }
 
     @Override
@@ -59,10 +61,12 @@ public class PassedTime {
 
     @Override
     public String toString() {
-        return "PassedTime{" +
-                "passedHours=" + passedHours +
-                ", passedMinutes=" + passedMinutes +
-                ", passedSeconds=" + passedSeconds +
-                '}';
+        final StringBuilder sb = new StringBuilder("PassedTime: [");
+        sb.append("hours = ").append(passedHours);
+        sb.append(", minutes = ").append(passedMinutes);
+        sb.append(", seconds = ").append(passedSeconds);
+        sb.append("]");
+        return sb.toString();
     }
+
 }
