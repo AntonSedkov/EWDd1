@@ -7,6 +7,15 @@ public class CircleFigure {
     private double length;
     private double square;
 
+    public CircleFigure() {
+    }
+
+    public CircleFigure(double radius, double length, double square) {
+        this.radius = radius;
+        this.length = length;
+        this.square = square;
+    }
+
     public double getRadius() {
         return radius;
     }

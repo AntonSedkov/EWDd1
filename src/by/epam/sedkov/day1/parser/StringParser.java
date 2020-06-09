@@ -8,7 +8,8 @@ public class StringParser {
     public int parseLastDigit(String number) throws CheckedException {
         if (FunctionValidator.isIntegerValue(number)) {
             String numericWithoutSpaces = number.trim();
-            return Integer.parseInt(numericWithoutSpaces.substring(numericWithoutSpaces.length() - 1));
+            String lastDigit = numericWithoutSpaces.substring(numericWithoutSpaces.length() - 1);
+            return Integer.parseInt(lastDigit);
         } else {
             throw new CheckedException("Wrong input data: not a number");
         }

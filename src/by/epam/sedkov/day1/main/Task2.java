@@ -14,11 +14,11 @@ public class Task2 {
 
         // Good result
         try {
-            calendarPrinter.daysPrinter(calendarService.receiveConcreteDaysInMonthAndYear(2012, 02));
+            calendarPrinter.daysPrinter(calendarService.receiveConcreteDays(2012, 02));
             calendarPrinter.leapYearDefinitionPrinter(CalendarValidator.isLeapYear(2012));
-            calendarPrinter.daysPrinter(calendarService.receiveConcreteDaysInMonthAndYear(2010, 2));
+            calendarPrinter.daysPrinter(calendarService.receiveConcreteDays(2010, 2));
             calendarPrinter.leapYearDefinitionPrinter(CalendarValidator.isLeapYear(2010));
-            calendarPrinter.daysPrinter(calendarService.receiveConcreteDaysInMonthAndYear(1900, 12));
+            calendarPrinter.daysPrinter(calendarService.receiveConcreteDays(1900, 12));
             calendarPrinter.leapYearDefinitionPrinter(CalendarValidator.isLeapYear(1900));
         } catch (Exception e) {
             printer.printException(e);
@@ -26,7 +26,7 @@ public class Task2 {
 
         // Bad result
         try {
-            calendarPrinter.daysPrinter(calendarService.receiveConcreteDaysInMonthAndYear(2012, 1234));
+            calendarPrinter.daysPrinter(calendarService.receiveConcreteDays(2012, 1234));
         } catch (Exception e) {
             printer.printException(e);
         }

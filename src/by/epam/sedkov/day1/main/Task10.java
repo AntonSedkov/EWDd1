@@ -3,8 +3,8 @@ package by.epam.sedkov.day1.main;
 import by.epam.sedkov.day1.console.OrdinaryPrinter;
 import by.epam.sedkov.day1.console.TrigonometricPrinter;
 import by.epam.sedkov.day1.entity.SegmentLine;
-import by.epam.sedkov.day1.service.FunctionService;
 import by.epam.sedkov.day1.exception.CheckedException;
+import by.epam.sedkov.day1.service.FunctionService;
 
 public class Task10 {
     public static void main(String[] args) {

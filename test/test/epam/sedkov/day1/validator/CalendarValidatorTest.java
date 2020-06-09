@@ -4,8 +4,7 @@ import by.epam.sedkov.day1.exception.CheckedException;
 import by.epam.sedkov.day1.validator.CalendarValidator;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class CalendarValidatorTest {
 
@@ -16,21 +15,29 @@ public class CalendarValidatorTest {
     }
 
     @Test(dataProvider = "dataBadForYear", dataProviderClass = DataProviderForValidator.class)
-    public void testFailIsYear(int year) {
+    public void testWrongIsYear(int year) {
         boolean actual = CalendarValidator.isYear(year);
         assertFalse(actual);
     }
 
     @Test(dataProvider = "dataGoodForYear", dataProviderClass = DataProviderForValidator.class, dependsOnMethods = {"testIsYear"})
-    public void testIsLeapYear(int year) throws CheckedException {
-        boolean actual = CalendarValidator.isLeapYear(year);
-        assertTrue(actual);
+    public void testIsLeapYear(int year) {
+        try {
+            boolean actual = CalendarValidator.isLeapYear(year);
+            assertTrue(actual);
+        } catch (CheckedException e) {
+            fail();
+        }
     }
 
     @Test(dataProvider = "dataBadForLeapYear", dataProviderClass = DataProviderForValidator.class)
-    public void testFailIsLeapYear(int year) throws CheckedException {
-        boolean actual = CalendarValidator.isLeapYear(year);
-        assertFalse(actual);
+    public void testWrongIsLeapYear(int year) {
+        try {
+            boolean actual = CalendarValidator.isLeapYear(year);
+            assertFalse(actual);
+        } catch (CheckedException e) {
+            fail();
+        }
     }
 
     @Test(dataProvider = "dataBadForYear", dataProviderClass = DataProviderForValidator.class,
@@ -46,7 +53,7 @@ public class CalendarValidatorTest {
     }
 
     @Test(dataProvider = "dataBadForMonth", dataProviderClass = DataProviderForValidator.class)
-    public void testFailIsMonth(int month) {
+    public void testWrongIsMonth(int month) {
         boolean actual = CalendarValidator.isMonth(month);
         assertFalse(actual);
     }
@@ -58,7 +65,7 @@ public class CalendarValidatorTest {
     }
 
     @Test(dataProvider = "dataBadSeconds", dataProviderClass = DataProviderForValidator.class)
-    public void testFailIsSecondsInCurrentDay(int seconds) {
+    public void testWrongIsSecondsInCurrentDay(int seconds) {
         boolean actual = CalendarValidator.isSecondsInCurrentDay(seconds);
         assertFalse(actual);
     }

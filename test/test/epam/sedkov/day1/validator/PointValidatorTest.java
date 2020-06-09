@@ -26,13 +26,13 @@ public class PointValidatorTest {
     }
 
     @Test
-    public void testFailIsEqualCoordinate() {
+    public void testWrongIsEqualCoordinate() {
         boolean actual = PointValidator.isEqualCoordinates(pointA, pointC);
         Assert.assertFalse(actual);
     }
 
     @Test(dataProvider = "dataForFail", dataProviderClass = DataProviderForValidator.class)
-    public void testFailTwoIsEqualCoordinate(PointCoordinate in, boolean out) {
+    public void testTwoIsEqualCoordinate(PointCoordinate in, boolean out) {
         boolean actual = PointValidator.isEqualCoordinates(pointA, in);
         Assert.assertEquals(actual, out);
     }

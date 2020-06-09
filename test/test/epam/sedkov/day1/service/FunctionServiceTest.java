@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.fail;
 
 public class FunctionServiceTest {
 
@@ -21,9 +22,13 @@ public class FunctionServiceTest {
     }
 
     @Test(dataProvider = "dataCountExpressionForParameter", dataProviderClass = DataProviderForService.class)
-    public void testCountExpressionForParameter(double in, double expected) throws CheckedException {
-        double actual = functionService.countExpressionForParameter(in);
-        assertEquals(actual, expected, 0.0001, "Result ");
+    public void testCountExpressionForParameter(double in, double expected) {
+        try {
+            double actual = functionService.countExpressionForParameter(in);
+            assertEquals(actual, expected, 0.0001, "Result ");
+        } catch (CheckedException e) {
+            fail();
+        }
     }
 
     @Test(expectedExceptions = CheckedException.class, expectedExceptionsMessageRegExp = "Division by zero")
@@ -32,9 +37,13 @@ public class FunctionServiceTest {
     }
 
     @Test(dataProvider = "dataTanForSegment", dataProviderClass = DataProviderForService.class)
-    public void testCountFunctionTanForSegment(SegmentLine in, Map<Double, Double> out) throws CheckedException {
-        Map<Double, Double> actual = functionService.countFunctionTanForSegment(in);
-        assertEquals(actual, out);
+    public void testCountFunctionTanForSegment(SegmentLine in, Map<Double, Double> out) {
+        try {
+            Map<Double, Double> actual = functionService.countFunctionTanForSegment(in);
+            assertEquals(actual, out);
+        } catch (CheckedException e) {
+            fail();
+        }
     }
 
     @Test(expectedExceptions = CheckedException.class, expectedExceptionsMessageRegExp = "Division by zero: Tangent tends to infinity")

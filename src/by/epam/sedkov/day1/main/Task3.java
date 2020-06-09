@@ -17,7 +17,7 @@ public class Task3 {
                     trigonometricService.receiveSquareOfInscribedSquare(
                             trigonometricService.receiveRadiusOfInscribedCircle(10.25)));
             trigonometricPrinter.howManySmallerPrinter(
-                    trigonometricService.howManyTimesInscribedSmallerDescribed(10.25),
+                    trigonometricService.howManyTimesSmaller(10.25),
                     "inscribed square", "described square");
         } catch (CheckedException e) {
             ordinaryPrinter.printException(e);
@@ -34,7 +34,7 @@ public class Task3 {
 
         try {
             trigonometricPrinter.howManySmallerPrinter(
-                    trigonometricService.howManyTimesInscribedSmallerDescribed(-777),
+                    trigonometricService.howManyTimesSmaller(-777),
                     "inscribed square", "described square");
         } catch (CheckedException e) {
             ordinaryPrinter.printException(e);

@@ -1,19 +1,19 @@
 package by.epam.sedkov.day1.service;
 
-import by.epam.sedkov.day1.entity.PassedTime;
-import by.epam.sedkov.day1.validator.CalendarValidator;
 import by.epam.sedkov.day1.entity.MonthEnum;
+import by.epam.sedkov.day1.entity.PassedTime;
 import by.epam.sedkov.day1.exception.CheckedException;
+import by.epam.sedkov.day1.validator.CalendarValidator;
 
 public class CalendarService {
 
-    public int receiveQuantityOfDaysInMonth(int month) {
+    public int receiveDaysInMonth(int month) {
         return (MonthEnum.values()[month - 1].getDays());
     }
 
-    public int receiveConcreteDaysInMonthAndYear(int year, int month) throws CheckedException {
+    public int receiveConcreteDays(int year, int month) throws CheckedException {
         if (CalendarValidator.isMonth(month)) {
-            int days = receiveQuantityOfDaysInMonth(month);
+            int days = receiveDaysInMonth(month);
             if (CalendarValidator.isLeapYear(year) && MonthEnum.values()[month - 1] == MonthEnum.FEBRUARY) {
                 days++;
             }

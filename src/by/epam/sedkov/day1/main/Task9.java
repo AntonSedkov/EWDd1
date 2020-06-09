@@ -2,8 +2,8 @@ package by.epam.sedkov.day1.main;
 
 import by.epam.sedkov.day1.console.OrdinaryPrinter;
 import by.epam.sedkov.day1.console.TrigonometricPrinter;
-import by.epam.sedkov.day1.service.TrigonometricService;
 import by.epam.sedkov.day1.exception.CheckedException;
+import by.epam.sedkov.day1.service.TrigonometricService;
 
 public class Task9 {
     public static void main(String[] args) {

@@ -15,7 +15,9 @@ public class DataProviderForValidator {
         Object[][] data = new Object[][]{
                 {new PointCoordinate("point D", 50.80, 10.10), false},
                 {new PointCoordinate("point E", -41.79, -15.62), false},
-                {new PointCoordinate("point E", -5.5, -10.10), false}};
+                {new PointCoordinate("point E", -5.5, -10.10), false},
+                {new PointCoordinate("point A", 5.5, 10.10), true}
+        };
         List<Object[]> list = List.of(data);
         return list.iterator();
     }

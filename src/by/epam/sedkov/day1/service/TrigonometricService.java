@@ -1,9 +1,9 @@
 package by.epam.sedkov.day1.service;
 
-import by.epam.sedkov.day1.entity.PointCoordinate;
-import by.epam.sedkov.day1.validator.PointValidator;
 import by.epam.sedkov.day1.entity.CircleFigure;
+import by.epam.sedkov.day1.entity.PointCoordinate;
 import by.epam.sedkov.day1.exception.CheckedException;
+import by.epam.sedkov.day1.validator.PointValidator;
 
 public class TrigonometricService {
 
@@ -25,18 +25,17 @@ public class TrigonometricService {
         }
     }
 
-    public double howManyTimesInscribedSmallerDescribed(double squareOfDescribedSquare) throws CheckedException {
+    public double howManyTimesSmaller(double squareOfDescribedSquare) throws CheckedException {
         if (squareOfDescribedSquare > 0) {
-            double squareOfInscribedSquare = receiveSquareOfInscribedSquare(
-                    receiveRadiusOfInscribedCircle(
-                            squareOfDescribedSquare));
+            double radius = receiveRadiusOfInscribedCircle(squareOfDescribedSquare);
+            double squareOfInscribedSquare = receiveSquareOfInscribedSquare(radius);
             return (squareOfDescribedSquare / squareOfInscribedSquare);
         } else {
             throw new CheckedException("Wrong input data: square must be bigger than 0.");
         }
     }
 
-    public double countDistanceToPoint(PointCoordinate point) {
+    private double countDistanceToPoint(PointCoordinate point) {
         return Math.hypot(point.getCoordinateX(), point.getCoordinateY());
     }
 

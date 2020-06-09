@@ -4,11 +4,11 @@ import by.epam.sedkov.day1.entity.PassedTime;
 import by.epam.sedkov.day1.exception.CheckedException;
 import by.epam.sedkov.day1.service.CalendarService;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import test.epam.sedkov.day1.validator.DataProviderForValidator;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.fail;
 
 public class CalendarServiceTest {
     CalendarService calendarService;
@@ -19,34 +19,42 @@ public class CalendarServiceTest {
     }
 
     @Test(dataProvider = "dataForMonth", dataProviderClass = DataProviderForService.class)
-    public void testReceiveQuantityOfDaysInMonth(int month, int days) {
-        int actual = calendarService.receiveQuantityOfDaysInMonth(month);
+    public void testReceiveDaysInMonth(int month, int days) {
+        int actual = calendarService.receiveDaysInMonth(month);
         assertEquals(actual, days, "Quantity of days");
     }
 
     @Test(dataProvider = "dataForMonthException", dataProviderClass = DataProviderForService.class,
             expectedExceptions = ArrayIndexOutOfBoundsException.class)
-    public void testExceptionReceiveQuantityOfDaysInMonth(int month) {
-        int actual = calendarService.receiveQuantityOfDaysInMonth(month);
+    public void testExceptionReceiveDaysInMonth(int month) {
+        int actual = calendarService.receiveDaysInMonth(month);
     }
 
     @Test(dataProvider = "concreteDaysGoodData", dataProviderClass = DataProviderForService.class,
-            dependsOnMethods = {"testReceiveQuantityOfDaysInMonth"})
-    public void testReceiveConcreteDaysInMonthAndYear(int year, int month, int days) throws CheckedException {
-        int actual = calendarService.receiveConcreteDaysInMonthAndYear(year, month);
-        assertEquals(actual, days, "Days in month in year");
+            dependsOnMethods = {"testReceiveDaysInMonth"})
+    public void testReceiveConcreteDays(int year, int month, int days) {
+        try {
+            int actual = calendarService.receiveConcreteDays(year, month);
+            assertEquals(actual, days, "Days in month in year");
+        } catch (CheckedException e) {
+            fail();
+        }
     }
 
     @Test(dataProvider = "concreteDaysExceptionData", dataProviderClass = DataProviderForService.class,
             expectedExceptions = CheckedException.class)
-    public void testExceptionReceiveConcreteDaysInMonthAndYear(int year, int month) throws CheckedException {
-        int actual = calendarService.receiveConcreteDaysInMonthAndYear(year, month);
+    public void testExceptionReceiveConcreteDays(int year, int month) throws CheckedException {
+        int actual = calendarService.receiveConcreteDays(year, month);
     }
 
     @Test(dataProvider = "passedTimeData", dataProviderClass = DataProviderForService.class)
-    public void testReceiveTime(int seconds, PassedTime expected) throws CheckedException {
-        PassedTime actual = calendarService.receiveTime(seconds);
-        assertEquals(actual, expected);
+    public void testReceiveTime(int seconds, PassedTime expected) {
+        try {
+            PassedTime actual = calendarService.receiveTime(seconds);
+            assertEquals(actual, expected);
+        } catch (CheckedException e) {
+            fail();
+        }
     }
 
     @Test(dataProvider = "dataBadSeconds", dataProviderClass = DataProviderForValidator.class,

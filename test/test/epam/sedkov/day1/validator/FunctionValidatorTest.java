@@ -15,7 +15,7 @@ public class FunctionValidatorTest {
     }
 
     @Test
-    public void testFailIsIntegerValue() {
+    public void testWrongIsIntegerValue() {
         boolean actual = FunctionValidator.isIntegerValue("Hello Java 111");
         assertFalse(actual);
     }
@@ -27,7 +27,7 @@ public class FunctionValidatorTest {
     }
 
     @Test
-    public void testFailIsNotNullValueForFunction() {
+    public void testWrongIsNotNullValueForFunction() {
         boolean actual = FunctionValidator.isNotNullValueForFunction(Math.cbrt(FunctionValidator.FUNCTION_RESTRICTION_TASK_EIGHT));
         assertFalse(actual);
     }
@@ -39,7 +39,7 @@ public class FunctionValidatorTest {
     }
 
     @Test(dataProvider = "dataBadForTan", dataProviderClass = DataProviderForValidator.class)
-    public void testFailIsTanExist(double in) {
+    public void testWrongIsTanExist(double in) {
         boolean actual = FunctionValidator.isTanExist(in);
         assertFalse(actual);
     }

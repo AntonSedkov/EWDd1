@@ -4,9 +4,10 @@ import by.epam.sedkov.day1.exception.CheckedException;
 import by.epam.sedkov.day1.parser.StringParser;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.fail;
 
 public class StringParserTest {
 
@@ -17,19 +18,24 @@ public class StringParserTest {
         stringParser = new StringParser();
     }
 
-    @Test(dataProvider = "goodDataForStringParser")
-    public void testParseLastDigit(String in, int out) throws CheckedException {
-        int actual = stringParser.parseLastDigit(in);
-        Assert.assertEquals(actual, out);
+    @Test(dataProvider = "dataStringParser")
+    public void testParseLastDigit(String in, int out) {
+        try {
+            int actual = stringParser.parseLastDigit(in);
+            Assert.assertEquals(actual, out);
+        } catch (
+                CheckedException e) {
+            fail();
+        }
     }
 
     @Test(expectedExceptions = CheckedException.class, expectedExceptionsMessageRegExp = "Wrong input data: not a number")
-    public void testFailParseLastDigit() throws CheckedException {
+    public void testExceptionParseLastDigit() throws CheckedException {
         int actual = stringParser.parseLastDigit("Hello Java 111");
     }
 
-    @DataProvider(name = "goodDataForStringParser")
-    public Object[][] createGoodDataParser() {
+    @DataProvider(name = "dataStringParser")
+    public Object[][] dataStringParser() {
         return new Object[][]{{"1234", 4}, {" 567", 7}, {"890 ", 0}, {" 25123456789012345678908 ", 8}};
     }
 }

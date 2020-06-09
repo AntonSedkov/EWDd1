@@ -1,7 +1,7 @@
 package by.epam.sedkov.day1.service;
 
-import by.epam.sedkov.day1.parser.StringParser;
 import by.epam.sedkov.day1.exception.CheckedException;
+import by.epam.sedkov.day1.parser.StringParser;
 
 public class NumericService {
 
@@ -56,14 +56,18 @@ public class NumericService {
     }
 
     // perfect number is a positive integer that is equal to the sum of its positive divisors, excluding the number itself
-    public boolean isPerfectNumber(int number) {
-        int sumOfDivisors = 0;
-        for (int i = 1; i < number; i++) {
-            if (number % i == 0) {
-                sumOfDivisors += i;
+    public boolean isPerfectNumber(int number) throws CheckedException {
+        if (number > 0) {
+            int sumOfDivisors = 0;
+            for (int i = 1; i < number; i++) {
+                if (number % i == 0) {
+                    sumOfDivisors += i;
+                }
             }
+            return number == sumOfDivisors;
+        } else {
+            throw new CheckedException("Number must be positive");
         }
-        return number == sumOfDivisors;
     }
 
 }

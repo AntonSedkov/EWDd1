@@ -7,7 +7,7 @@ public class OrdinaryPrinter {
     }
 
     public void printLastSquareDigit(int lastDigit) {
-        System.out.println("Last digit of square number " + lastDigit);
+        System.out.printf("Last digit of square number %s.%n", lastDigit);
     }
 
     public void printFunction(double result) {
