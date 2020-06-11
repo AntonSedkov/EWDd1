@@ -1,17 +1,11 @@
 package by.epam.sedkov.day1.service;
 
 import by.epam.sedkov.day1.exception.CheckedException;
-import by.epam.sedkov.day1.parser.StringParser;
 
 public class NumericService {
 
     public int receiveLastDigit(int number) {
         return number % 10;
-    }
-
-    public int receiveLastDigit(String number) throws CheckedException {
-        StringParser stringParser = new StringParser();
-        return stringParser.parseLastDigit(number);
     }
 
     public int receiveLastSquaredDigit(int digit) throws CheckedException {
@@ -45,14 +39,6 @@ public class NumericService {
             }
         }
         return quantityOfEven == 2;
-    }
-
-    public boolean atLeastTwoEven(String[] numericStrings) throws CheckedException {
-        int[] numbersFromString = new int[numericStrings.length];
-        for (int i = 0; i < numericStrings.length; i++) {
-            numbersFromString[i] = receiveLastDigit(numericStrings[i]);
-        }
-        return atLeastTwoEven(numbersFromString);
     }
 
     // perfect number is a positive integer that is equal to the sum of its positive divisors, excluding the number itself

@@ -1,7 +1,7 @@
 package by.epam.sedkov.day1.validator;
 
 public class FunctionValidator {
-    private static final String INTEGER_VALUE = "\\d+";
+    public static final String INTEGER_VALUE = "\\d+";
     public static final int FUNCTION_RESTRICTION_TASK_EIGHT = 6;
     public static final int DEGREE_FOR_2_PI = 360;
 

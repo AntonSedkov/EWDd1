@@ -1,6 +1,6 @@
 package test.epam.sedkov.day1.service;
 
-import by.epam.sedkov.day1.entity.PassedTime;
+import by.epam.sedkov.day1.entity.PastTime;
 import by.epam.sedkov.day1.exception.CheckedException;
 import by.epam.sedkov.day1.service.CalendarService;
 import org.testng.annotations.BeforeClass;
@@ -11,7 +11,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
 public class CalendarServiceTest {
-    CalendarService calendarService;
+    private CalendarService calendarService;
 
     @BeforeClass
     public void setUp() {
@@ -48,9 +48,9 @@ public class CalendarServiceTest {
     }
 
     @Test(dataProvider = "passedTimeData", dataProviderClass = DataProviderForService.class)
-    public void testReceiveTime(int seconds, PassedTime expected) {
+    public void testReceiveTime(int seconds, PastTime expected) {
         try {
-            PassedTime actual = calendarService.receiveTime(seconds);
+            PastTime actual = calendarService.receiveTime(seconds);
             assertEquals(actual, expected);
         } catch (CheckedException e) {
             fail();
@@ -60,7 +60,7 @@ public class CalendarServiceTest {
     @Test(dataProvider = "dataBadSeconds", dataProviderClass = DataProviderForValidator.class,
             expectedExceptions = CheckedException.class)
     public void testExceptionReceiveTime(int seconds) throws CheckedException {
-        PassedTime actual = calendarService.receiveTime(seconds);
+        PastTime actual = calendarService.receiveTime(seconds);
     }
 
 }

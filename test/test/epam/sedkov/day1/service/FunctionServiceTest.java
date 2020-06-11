@@ -14,7 +14,7 @@ import static org.testng.Assert.fail;
 
 public class FunctionServiceTest {
 
-    FunctionService functionService;
+    private FunctionService functionService;
 
     @BeforeClass
     public void setUp() {

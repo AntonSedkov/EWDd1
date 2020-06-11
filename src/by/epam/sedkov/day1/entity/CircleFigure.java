@@ -47,13 +47,13 @@ public class CircleFigure {
             return false;
         }
         CircleFigure that = (CircleFigure) o;
-        if (Double.compare(that.radius, this.radius) != 0) {
+        if (Math.abs(this.radius - that.radius) > 0.0001) {
             return false;
         }
-        if (Double.compare(that.length, this.radius) != 0) {
+        if (Math.abs(this.length - that.length) > 0.0001) {
             return false;
         }
-        return Double.compare(that.square, this.square) == 0;
+        return Math.abs(this.square - that.square) <= 0.0001;
     }
 
     @Override

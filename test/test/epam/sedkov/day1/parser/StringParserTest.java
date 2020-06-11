@@ -11,7 +11,7 @@ import static org.testng.Assert.fail;
 
 public class StringParserTest {
 
-    StringParser stringParser;
+    private StringParser stringParser;
 
     @BeforeClass
     public void setUp() {

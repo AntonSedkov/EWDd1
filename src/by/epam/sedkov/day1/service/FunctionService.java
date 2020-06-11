@@ -16,7 +16,8 @@ public class FunctionService {
 
     private double countSecondExpression(double number) throws CheckedException {
         if (FunctionValidator.isNotNullValueForFunction(number)) {
-            return (1 / (Math.pow(number, 3) - 6));
+            double result = 1 / (Math.pow(number, 3) - 6);
+            return result;
         } else {
             throw new CheckedException("Division by zero");
         }

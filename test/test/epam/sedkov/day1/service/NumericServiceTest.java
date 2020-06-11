@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class NumericServiceTest {
-    NumericService numericService;
+    private NumericService numericService;
 
     @BeforeClass
     public void setUp() {
@@ -25,21 +25,6 @@ public class NumericServiceTest {
     public void testWrongReceiveLastDigit(int in, int expected) {
         int actual = numericService.receiveLastDigit(in);
         assertNotEquals(actual, expected);
-    }
-
-    @Test
-    public void testReceiveLastDigitString() {
-        try {
-            int actual = numericService.receiveLastDigit(" 2525369871564632132849213213    ");
-            assertEquals(actual, 3);
-        } catch (CheckedException e) {
-            fail();
-        }
-    }
-
-    @Test(expectedExceptions = CheckedException.class)
-    public void testExceptionReceiveLastDigitString() throws CheckedException {
-        int actual = numericService.receiveLastDigit("Hello Java 111");
     }
 
     @Test(dataProvider = "dataLastSquaredDigit", dataProviderClass = DataProviderForService.class)
@@ -61,16 +46,6 @@ public class NumericServiceTest {
     public void testAtLeastTwoEven(int[] in, boolean expected) {
         boolean actual = numericService.atLeastTwoEven(in);
         assertEquals(actual, expected);
-    }
-
-    @Test(dataProvider = "dataAtLeastTwoEvenString", dataProviderClass = DataProviderForService.class)
-    public void testStringAtLeastTwoEven(String[] in, boolean expected) {
-        try {
-            boolean actual = numericService.atLeastTwoEven(in);
-            assertEquals(actual, expected);
-        } catch (CheckedException e) {
-            fail();
-        }
     }
 
     @Test(dataProvider = "dataPerfectNumber", dataProviderClass = DataProviderForService.class)

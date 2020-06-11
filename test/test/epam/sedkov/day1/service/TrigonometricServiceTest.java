@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 
 public class TrigonometricServiceTest {
 
-    TrigonometricService trigonometricService;
+    private TrigonometricService trigonometricService;
 
     @BeforeClass
     public void setUp() {
@@ -127,10 +127,7 @@ public class TrigonometricServiceTest {
     public void testCountCircleLengthAndSquare(double in, CircleFigure expected) {
         try {
             CircleFigure actual = trigonometricService.countCircleLengthAndSquare(in);
-            //assertEquals(actual, expected);
-            assertEquals(actual.getRadius(), expected.getRadius(), 0.0001, "Radius");
-            assertEquals(actual.getLength(), expected.getLength(), 0.0001, "Length");
-            assertEquals(actual.getSquare(), expected.getSquare(), 0.0001, "Square");
+            assertEquals(actual, expected);
         } catch (CheckedException e) {
             fail();
         }
@@ -140,11 +137,8 @@ public class TrigonometricServiceTest {
     public void testWrongCountCircleLengthAndSquare() {
         try {
             CircleFigure actual = trigonometricService.countCircleLengthAndSquare(7);
-            CircleFigure expected = new CircleFigure(2, 15, 30);
-            //assertNotEquals(actual, expected);
-            assertNotEquals(actual.getRadius(), expected.getRadius(), 0.0001, "Radius");
-            assertNotEquals(actual.getLength(), expected.getLength(), 0.0001, "Length");
-            assertNotEquals(actual.getSquare(), expected.getSquare(), 0.0001, "Square");
+            CircleFigure expected = new CircleFigure(3, 15, 30);
+            assertNotEquals(actual, expected);
         } catch (CheckedException e) {
             fail();
         }

@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 
 public class PointValidatorTest {
 
-    PointCoordinate pointA;
-    PointCoordinate pointB;
-    PointCoordinate pointC;
+    private PointCoordinate pointA;
+    private PointCoordinate pointB;
+    private PointCoordinate pointC;
 
     @BeforeMethod
     public void setUp() {

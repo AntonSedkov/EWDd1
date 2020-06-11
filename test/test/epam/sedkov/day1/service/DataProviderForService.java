@@ -1,7 +1,7 @@
 package test.epam.sedkov.day1.service;
 
 import by.epam.sedkov.day1.entity.CircleFigure;
-import by.epam.sedkov.day1.entity.PassedTime;
+import by.epam.sedkov.day1.entity.PastTime;
 import by.epam.sedkov.day1.entity.PointCoordinate;
 import by.epam.sedkov.day1.entity.SegmentLine;
 import by.epam.sedkov.day1.validator.CalendarValidator;
@@ -49,11 +49,11 @@ public class DataProviderForService {
     @DataProvider(name = "passedTimeData")
     public static Iterator<Object[]> passedTimeData() {
         Object[][] data = new Object[][]{
-                {10, new PassedTime(0, 0, 10)},
-                {66, new PassedTime(0, 1, 6)},
-                {3690, new PassedTime(1, 1, 30)},
-                {34587, new PassedTime(9, 36, 27)},
-                {CalendarValidator.SECONDS_IN_DAY, new PassedTime(24, 0, 0)}
+                {10, new PastTime(0, 0, 10)},
+                {66, new PastTime(0, 1, 6)},
+                {3690, new PastTime(1, 1, 30)},
+                {34587, new PastTime(9, 36, 27)},
+                {CalendarValidator.SECONDS_IN_DAY, new PastTime(24, 0, 0)}
         };
         List<Object[]> list = List.of(data);
         return list.iterator();
@@ -109,17 +109,6 @@ public class DataProviderForService {
         return new Object[][]{
                 {new int[]{2, 1, 4, 3}, true}, {new int[]{8, 6, 4, 1}, true}, {new int[]{80, 0, 96, 0}, true},
                 {new int[]{1, 7, 3, 4}, false}, {new int[]{1, 1, 1, 1}, false}
-        };
-    }
-
-    @DataProvider(name = "dataAtLeastTwoEvenString")
-    public static Object[][] dataAtLeastTwoEvenString() {
-        return new Object[][]{
-                {new String[]{"13 ", " 26", " 39 ", "48"}, true},
-                {new String[]{"8", "6", "4", "1"}, true},
-                {new String[]{" 80 ", " 0 ", "96 ", " 0"}, true},
-                {new String[]{"13 ", " 33", " 39 ", "48"}, false},
-                {new String[]{" 77 ", " 7 ", "777 ", " 7"}, false}
         };
     }
 
@@ -183,7 +172,7 @@ public class DataProviderForService {
     @DataProvider(name = "dataCircleFigure")
     public static Object[][] dataCircleFigure() {
         return new Object[][]{
-                {1, new CircleFigure(1, 2 * Math.PI, Math.PI)},
+                {1, new CircleFigure(1, 6.28318, 3.14159)},
                 {2.5, new CircleFigure(2.5, 5 * Math.PI, 6.25 * Math.PI)},
                 {10, new CircleFigure(10, 20 * Math.PI, 100 * Math.PI)}
         };

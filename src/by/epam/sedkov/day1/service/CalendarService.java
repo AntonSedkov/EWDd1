@@ -1,7 +1,7 @@
 package by.epam.sedkov.day1.service;
 
 import by.epam.sedkov.day1.entity.MonthEnum;
-import by.epam.sedkov.day1.entity.PassedTime;
+import by.epam.sedkov.day1.entity.PastTime;
 import by.epam.sedkov.day1.exception.CheckedException;
 import by.epam.sedkov.day1.validator.CalendarValidator;
 
@@ -35,13 +35,13 @@ public class CalendarService {
         return (seconds % CalendarValidator.SECONDS_IN_HOUR % CalendarValidator.SECONDS_IN_MINUTE);
     }
 
-    public PassedTime receiveTime(int seconds) throws CheckedException {
+    public PastTime receiveTime(int seconds) throws CheckedException {
         if (CalendarValidator.isSecondsInCurrentDay(seconds)) {
-            PassedTime passedTime = new PassedTime();
-            passedTime.setPassedHours(receiveHours(seconds));
-            passedTime.setPassedMinutes(receiveMinutes(seconds));
-            passedTime.setPassedSeconds(receiveSeconds(seconds));
-            return passedTime;
+            PastTime pastTime = new PastTime();
+            pastTime.setPastHours(receiveHours(seconds));
+            pastTime.setPastMinutes(receiveMinutes(seconds));
+            pastTime.setPastSeconds(receiveSeconds(seconds));
+            return pastTime;
         } else {
             throw new CheckedException("Wrong data: must be during one day, seconds from 0 before " + CalendarValidator.SECONDS_IN_DAY);
         }

@@ -1,6 +1,6 @@
 package by.epam.sedkov.day1.console;
 
-import by.epam.sedkov.day1.entity.PassedTime;
+import by.epam.sedkov.day1.entity.PastTime;
 
 public class CalendarPrinter {
     public void daysPrinter(int days) {
@@ -11,9 +11,9 @@ public class CalendarPrinter {
         System.out.println(isLeapYear ? "Year is leap." : "Year is not leap.");
     }
 
-    public void pastTimePrinter(PassedTime passedTime) {
-        System.out.printf("To this moment has passed %dH:%dM:%dS.%n", passedTime.getPassedHours(),
-                passedTime.getPassedMinutes(), passedTime.getPassedSeconds());
+    public void pastTimePrinter(PastTime pastTime) {
+        System.out.printf("To this moment has passed %dH:%dM:%dS.%n", pastTime.getPastHours(),
+                pastTime.getPastMinutes(), pastTime.getPastSeconds());
     }
 
 }
